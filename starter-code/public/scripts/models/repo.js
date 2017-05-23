@@ -13,7 +13,7 @@ var app = app || {};
     //       populate it with the response from Github before you call the callback.
     $.ajax({
       url: 'https://api.github.com/user/repos',
-      method:'GET',
+      method: 'GET',
       headers: {
         Authorization: myGitHubToken
       }
@@ -22,8 +22,8 @@ var app = app || {};
       data.forEach(repo => {
         repos.all.push(repo);
       })
+      callback();
     });
-    callback();
   }
 
   // REVIEW: Model method that filters the full collection for repos with a particular attribute.
