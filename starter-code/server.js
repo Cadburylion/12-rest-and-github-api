@@ -6,8 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-const conString = 'postgres://postgres:Sidirume&7@localhost:5432/kilovolt';
-// const conString = ''; // TODO: Don't forget to set your own conString
+//const conString = 'postgres://postgres:Sidirume&7@localhost:5432/kilovolt';
+const conString = 'postgres://localhost:5432/kilovolt'; // TODO: Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -111,7 +111,7 @@ app.delete('/articles', (request, response) => {
   .then(() => response.send('Delete complete'))
   .catch(console.error);
 });
-
+app.get('*',(request,response) => response.sendFile('index.html', {root: './public'}));
 loadDB();
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
